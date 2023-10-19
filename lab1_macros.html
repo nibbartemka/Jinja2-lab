@@ -1,0 +1,10 @@
+{% macro generate_select(select_name, option_line, selected_num) %}
+    {% set words = option_line.split(" ") %}
+    <select name="{{select_name}}">
+        {% for i in range(words|length) %}
+            <option value="{{i}}" {% if i == selected_num %} selected {% endif %}>
+                {{words[i]}}
+            </option>
+        {% endfor %}
+    </select>
+{% endmacro %}

@@ -1,0 +1,21 @@
+{% macro get_list(books, n) %}
+    {% set flag = (n < 1 or n >= books|length) %}
+    {% set point = books|length if flag else n//2 %}
+    {% for book in books[:point] %}
+        <div>
+            Название: {{ book["title"] }}<br>
+            Автор: {{ book["author"] }}<br>
+            Цена: {{ book["price"] }}
+        </div>
+    {% endfor %}
+    {% if not flag %}
+    <p>...</p>
+    {% for book in books[-point-(n%2):] %}
+        <div>
+            Название: {{ book["title"] }}<br>
+            Автор: {{ book["author"] }}<br>
+            Цена: {{ book["price"] }}
+        </div>
+    {% endfor %}
+    {% endif %}
+{% endmacro %}
